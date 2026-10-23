@@ -1,0 +1,17 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>E01 — Bindings AFB 0.1.0 · SameLoop</title><link rel="stylesheet" href="../../../assets/style.css"></head><body><header><img class="brand" src="../../../branding/profile-picture.png" alt="SameLoop emblem"><div class="badge">Bind & Seek · SameLoop Lab · 0.2.0</div><h1>E01 — Bindings AFB 0.1.0</h1><nav><a href="../../../index.html">Overview</a><a href="../../../site/README.html">Read the guide</a><a href="../../../index.html#diagrams">Diagrams</a><a href="../../../index.html#documents">Documentation</a></nav></header><main><article><h1 id="e01-bindings-afb-010">E01 — Bindings AFB 0.1.0</h1>
+<p>Origine : rapport <code>docs/VALIDATION.md</code> et sortie de la suite joints à la livraison
+AFB du 24 octobre 2026. Environnement rapporté : Linux x86_64 isolé, GCC 13.3.0,
+Meson 1.12.1, JSON-C 0.17, Python 3.12, websockets 16.0.</p>
+<p>Compilation des quatre projets, trois exécutables de tests de modèle et installation
+DESTDIR rapportées réussies. Un binder construit depuis les sources a chargé les
+quatre modules. Les 11 scénarios couvrent notamment les API privées, réglages
+invalides, AUTO, perte et retour de mesure, fraîcheur, qualité d'alarme et clients
+abonnés indépendants. Le profil normal refuse les injections et le redémarrage
+réinitialise OFF/25.</p>
+<p><a href="../../../results/imported/brut/afb-integration.txt">Sortie brute importée</a> ;
+<a href="../../../results/imported/brut/afb-revisions.json">révisions amont</a>.</p>
+<p>Limites : pas de validation utilisateur Fedora/redpesk encore fournie, pas de GUI,
+pas de TLS/mTLS, pas de SMACK/Cynagora, pas de CAN/MCU, pas de RPM/Yocto.
+La simulation AFB n'utilise pas exactement l'intégrateur des UI 0.1.0.
+Cette preuve n'est pas un benchmark, un test de longue durée ou une certification.</p>
+</article></main><footer>SameLoop Lab · 25 October 2026 · Offline documentation</footer></body></html>

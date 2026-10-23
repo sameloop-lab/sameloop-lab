@@ -1,0 +1,121 @@
+# SPDX-License-Identifier: MIT
+# SameLoop: custom demonstration catalog, NOT standard COVESA vehicle signals.
+# This file defines metadata, not a running simulator or controller.
+#
+# VSS types are NOT per-client access-control rules:
+# - sensor: actual value published by a provider; consumers read/subscribe.
+# - actuator: consumer requests a target; provider applies it and publishes
+#   the actual value. Successful request != physical target reached.
+# - attribute: characteristic that changes rarely.
+# No standard VSS write-only type exists. KUKSA documented actuate/provide
+# scopes include read access. Hiding a value in the UI is not access control.
+# A strictly write-only command needs a separately enforced command API or
+# a verified authorization mechanism for the pinned broker/API version.
+#
+# Generate broker JSON using vss-tools 6.x and its matching VSS unit files:
+# vspec export json -s sameloop.vspec -o sameloop.json \
+#   -u /path/to/vss/spec/units.yaml \
+#   -q /path/to/vss/spec/quantities.yaml --pretty
+# Load generated JSON: databroker --vss sameloop.json
+# Authentication/TLS and clients/providers must be configured separately.
+# Use a single pinned KUKSA API version for every participant.
+#
+# Suggested roles (scope strings are token claims, not a complete JWT):
+# Viewer: read:Vehicle.SameLoop
+# Operator: read:Vehicle.SameLoop
+#   actuate:Vehicle.SameLoop.Controller.Setpoint
+#   actuate:Vehicle.SameLoop.Controller.Mode
+# Simulator: provide:Vehicle.SameLoop.Temperature
+#   provide:Vehicle.SameLoop.Fan
+# Controller: read:Vehicle.SameLoop
+#   provide:Vehicle.SameLoop.Controller
+#   provide:Vehicle.SameLoop.Alarm
+#   actuate:Vehicle.SameLoop.Fan.DutyCycle
+#
+# In this design the UI changes Setpoint/Mode; the controller owns fan commands.
+# Providers must validate requests and enforce all functional safety rules.
+# Values are unavailable until providers publish them; no live values are
+# inferred from these metadata. For alarms, this model carries current state,
+# not a durable event log.
+
+Vehicle:
+  type: branch
+  description: Root of the custom demonstration catalog.
+
+Vehicle.SameLoop:
+  type: branch
+  description: Simulated thermal regulation bench.
+
+Vehicle.SameLoop.Model:
+  type: attribute
+  datatype: string
+  description: Model identifier published at startup, for example SameLoop-Sim-1.
+
+Vehicle.SameLoop.Temperature:
+  type: branch
+  description: Temperature sensor feedback.
+
+Vehicle.SameLoop.Temperature.Value:
+  type: sensor
+  datatype: float
+  unit: celsius
+  min: -40
+  max: 150
+  description: Measured chamber temperature; provider publishes at 10 Hz.
+
+Vehicle.SameLoop.Temperature.IsValid:
+  type: sensor
+  datatype: boolean
+  description: Sensor validity reported by the simulator; does not replace freshness checks.
+
+Vehicle.SameLoop.Fan:
+  type: branch
+  description: Fan actuator and physical feedback.
+
+Vehicle.SameLoop.Fan.DutyCycle:
+  type: actuator
+  datatype: uint8
+  unit: percent
+  min: 0
+  max: 100
+  description: Requested fan duty cycle on actuation; applied duty cycle on reading.
+
+Vehicle.SameLoop.Fan.Speed:
+  type: sensor
+  datatype: uint16
+  unit: rpm
+  min: 0
+  max: 10000
+  description: Measured fan rotational speed, not the requested duty cycle.
+
+Vehicle.SameLoop.Controller:
+  type: branch
+  description: Regulation settings and applied controller state.
+
+Vehicle.SameLoop.Controller.Setpoint:
+  type: actuator
+  datatype: float
+  unit: celsius
+  min: 15
+  max: 40
+  description: Requested chamber temperature; reading returns the setpoint accepted by the controller.
+
+Vehicle.SameLoop.Controller.Mode:
+  type: actuator
+  datatype: string
+  allowed: ["OFF", "AUTO"]
+  description: Requested regulation mode; reading returns the mode applied by the controller.
+
+Vehicle.SameLoop.Alarm:
+  type: branch
+  description: Alarm states calculated and published by the controller.
+
+Vehicle.SameLoop.Alarm.Overtemperature:
+  type: sensor
+  datatype: boolean
+  description: True when measured temperature exceeds the demo threshold of 50 degrees Celsius.
+
+Vehicle.SameLoop.Alarm.SensorUnavailable:
+  type: sensor
+  datatype: boolean
+  description: True if the sensor is invalid or no fresh measurement arrived for one second.

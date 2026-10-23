@@ -1,0 +1,44 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Known gaps against the functional target · SameLoop</title><link rel="stylesheet" href="../../assets/style.css"></head><body><header><img class="brand" src="../../branding/profile-picture.png" alt="SameLoop emblem"><div class="badge">Bind & Seek · SameLoop Lab · 0.2.0</div><h1>Known gaps against the functional target</h1><nav><a href="../../index.html">Overview</a><a href="../../site/README.html">Read the guide</a><a href="../../index.html#diagrams">Diagrams</a><a href="../../index.html#documents">Documentation</a></nav></header><main><article><h1 id="known-gaps-against-the-functional-target">Known gaps against the functional target</h1>
+<table>
+<thead>
+<tr>
+<th>Requirement / assumption</th>
+<th>Actual scope of available evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Identical plant across stacks</td>
+<td>KUKSA uses RK4 sameloop-plant; AFB and UIs retain older models</td>
+</tr>
+<tr>
+<td>Automatic recovery F07</td>
+<td>KUKSA services fail visibly on RPC error and need explicit restart</td>
+</tr>
+<tr>
+<td>Role enforcement F08</td>
+<td>Not implemented in the trusted-loopback KUKSA profile</td>
+</tr>
+<tr>
+<td>Connected graphical application</td>
+<td>Flutter/LVGL adapters to backends remain unvalidated</td>
+</tr>
+<tr>
+<td>One signal layout</td>
+<td>Original VSpec and KUKSA 0.1.0 paths differ; mapping is explicit</td>
+</tr>
+<tr>
+<td>Full AGL/redpesk deployment</td>
+<td>Broker/binder Linux tests do not qualify an OS image</td>
+</tr>
+<tr>
+<td>Production hardware safety</td>
+<td>Demonstration watchdog/inhibit rules are not a safety analysis</td>
+</tr>
+</tbody>
+</table>
+<p>Do not infer a link's validation from successful tests of its two endpoints.
+A source archive, a compiled component, an integration test and a target-board
+validation are separate evidence levels. No middleware performance winner can
+be inferred from these initial tests.</p>
+</article></main><footer>SameLoop Lab · 25 October 2026 · Offline documentation</footer></body></html>

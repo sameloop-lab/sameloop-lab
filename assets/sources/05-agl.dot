@@ -1,0 +1,20 @@
+digraph G {
+ graph [rankdir=TB,bgcolor="white",pad=.4,nodesep=.45,ranksep=.6,fontname="DejaVu Sans",fontsize=18,labelloc=t,label="05 · KUKSA on Linux: profile 0.1.0 delivered\nImported evidence · not a complete AGL image"];
+ node [shape=box,style="rounded,filled",fillcolor="#edf3fa",color="#a6b6c8",fontname="DejaVu Sans",fontsize=12,margin=".2,.15"];
+ edge [fontname="DejaVu Sans",fontsize=10,color="#42637e",arrowsize=.7];
+ cli [label="CLI client delivered\nSettings, reads, subscriptions"];
+ ui [label="Flutter / LVGL\nAdapters to develop",fontcolor="#b42318"];
+ broker [label="KUKSA Databroker 0.7.1\nAPI kuksa.val.v1 · loopback without TLS/JWT",fillcolor="#efeafb"];
+ controller [label="sameloop-agl: controller\nOFF/AUTO · quality · setpoint · alarms"];
+ provider [label="sameloop-agl: provider\nSensor + fan · watchdog"];
+ plant [label="sameloop-plant 0.1.0\nRK4 model · local Python library",fillcolor="#edf7f0"];
+ future [label="AGL / Yocto image and hardware\nExtensions to validate",fontcolor="#b42318",fillcolor="#fff8e9"];
+ cli -> broker [label="gRPC Get / Set / Subscribe",dir=both];
+ ui -> broker [label="gRPC or adapter to develop",dir=both,style=dashed];
+ broker -> controller [label="Frame, Settings / Command, State\ngRPC · separate process",dir=both];
+ broker -> provider [label="Command / Frame and feedback\ngRPC · separate process",dir=both];
+ provider -> plant [label="Local Python calls",dir=both];
+ provider -> future [label="Future work",style=dashed];
+ {rank=same;cli;ui;}
+ {rank=same;controller;provider;}
+}

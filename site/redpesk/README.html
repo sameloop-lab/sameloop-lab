@@ -1,0 +1,16 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>redpesk / AFB · SameLoop</title><link rel="stylesheet" href="../../assets/style.css"></head><body><header><img class="brand" src="../../branding/profile-picture.png" alt="SameLoop emblem"><div class="badge">Bind & Seek · SameLoop Lab · 0.2.0</div><h1>redpesk / AFB</h1><nav><a href="../../index.html">Overview</a><a href="../../site/README.html">Read the guide</a><a href="../../index.html#diagrams">Diagrams</a><a href="../../index.html#documents">Documentation</a></nav></header><main><article><h1 id="redpesk-afb">redpesk / AFB</h1>
+<p>Four separate 0.1.0 C binding projects were delivered: <code>sameloop-api-binding</code>,
+<code>sameloop-sensor-binding</code>, <code>sameloop-controller-binding</code>, <code>sameloop-fan-binding</code>.
+They use Meson and run in one afb-binder process. Internal subcalls are not
+WebSocket messages. The facade exposes the client API; the three other APIs
+are private in the demonstrated configuration.</p>
+<p><img src="../../assets/diagrammes/04-afb.svg" alt="AFB architecture"></p>
+<p><a href="../results/imported/AFB.html">Imported validation</a>: builds, model tests and
+11 integration scenarios with a real binder were reported successful on Linux.
+This does not establish a complete redpesk image, SMACK isolation between
+modules, role enforcement, TLS, hardware or connected GUI support.</p>
+<p>Implementation archives remain separate from this documentation tarball.
+Register their published URLs in <a href="../delivery/README.html">the delivery inventory</a>.
+The simulation currently differs numerically from the new RK4 plant model.</p>
+<p>Upstream: https://github.com/redpesk-core/afb-binder</p>
+</article></main><footer>SameLoop Lab · 25 October 2026 · Offline documentation</footer></body></html>

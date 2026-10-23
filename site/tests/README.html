@@ -1,0 +1,48 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Testing and optional open-source mocks · SameLoop</title><link rel="stylesheet" href="../../assets/style.css"></head><body><header><img class="brand" src="../../branding/profile-picture.png" alt="SameLoop emblem"><div class="badge">Bind & Seek · SameLoop Lab · 0.2.0</div><h1>Testing and optional open-source mocks</h1><nav><a href="../../index.html">Overview</a><a href="../../site/README.html">Read the guide</a><a href="../../index.html#diagrams">Diagrams</a><a href="../../index.html#documents">Documentation</a></nav></header><main><article><h1 id="testing-and-optional-open-source-mocks">Testing and optional open-source mocks</h1>
+<p>Current evidence uses real AFB/KUKSA services. A future <code>sameloop-tests</code> may share
+functional scenarios across stacks. It is <strong>planned, not integrated</strong> in 0.2.0.</p>
+<table>
+<thead>
+<tr>
+<th>Purpose</th>
+<th>Candidate</th>
+<th>Boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Physical simulation</td>
+<td>sameloop-plant</td>
+<td>Models temperature and fan dynamics; already used by KUKSA</td>
+</tr>
+<tr>
+<td>Network disruption</td>
+<td><a href="https://github.com/Shopify/toxiproxy">Toxiproxy</a></td>
+<td>TCP faults around real services; planned</td>
+</tr>
+<tr>
+<td>Selected service mocks</td>
+<td><a href="https://www.mock-server.com/">MockServer</a></td>
+<td>Qualify a pinned release against KUKSA Get/Set/Subscribe; planned</td>
+</tr>
+<tr>
+<td>Cross-stack orchestration</td>
+<td>Python runner, JUnit reports</td>
+<td>Proposed sameloop-tests; no common runner delivered</td>
+</tr>
+</tbody>
+</table>
+<p>MockServer documents gRPC mocking, including server-streaming. This does not
+mean it automatically implements KUKSA state, actuation, metadata or the AFB
+WSJ1 protocol. See <a href="https://www.mock-server.com/mock_server/grpc_mocking.html">its gRPC documentation</a>.
+Toxiproxy operates on TCP connections; it does not perturb local AFB subcalls,
+zbus memory channels or a physical CAN bus.</p>
+<p>Start with real-stack tests and common scenarios: frozen sensor, delayed command,
+controller loss, broker restart and invalid values. Add mocks only where a
+specific dependency behavior is otherwise difficult to reproduce. Keep expected
+results version-specific: the current KUKSA profile does not auto-reconnect.</p>
+<p><img src="../../assets/diagrammes/12-tests.svg" alt="Test levels"></p>
+<p>Code coverage requires instrumenting the tested code. A mock server alone does
+not produce C/Rust/Python coverage. No framework integration, coverage percentage
+or benchmark result is claimed by this roadmap.</p>
+</article></main><footer>SameLoop Lab · 25 October 2026 · Offline documentation</footer></body></html>

@@ -1,0 +1,27 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.35", ranksep="0.58", splines=polyline, fontname="DejaVu Sans", fontsize=19, labelloc=t, label="03 · Same function, different implementations\nTarget architecture · choose one stack · red names = future projects"];
+node [shape=box, style="rounded,filled", fillcolor="#f1f5f9", color="#a6b6c8", penwidth=1.3, fontname="DejaVu Sans", fontsize=13, margin="0.18,0.13"];
+edge [fontname="DejaVu Sans", fontsize=11, color="#42637e", fontcolor="#36536b", arrowsize=0.7, penwidth=1.3];
+ui [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD><B><FONT COLOR="#17324d">User interfaces</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="12" COLOR="#42566a">Flutter and LVGL simulation sources delivered</FONT></TD></TR><TR><TD><FONT POINT-SIZE="12" COLOR="#42566a">Qt proposed</FONT></TD></TR></TABLE>>, fillcolor="#edf3fa"];
+contract [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD><B><FONT COLOR="#17324d">Same functional contract</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="12" COLOR="#42566a">Setpoint · mode · reading · fan · alarms</FONT></TD></TR><TR><TD><FONT POINT-SIZE="12" COLOR="#42566a">Shared specification, separate communication buses</FONT></TD></TR></TABLE>>, fillcolor="#fff8e9"];
+a [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD><B><FONT COLOR="#17324d">AFB bindings delivered</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="12" COLOR="#42566a">sameloop-api/sensor/controller/fan-binding</FONT></TD></TR></TABLE>>, fillcolor="#edf3fa"];
+k [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD><B><FONT COLOR="#17324d">sameloop-agl</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="12" COLOR="#42566a">KUKSA Linux 0.1.0 delivered</FONT></TD></TR></TABLE>>, fillcolor="#edf3fa"];
+o [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD><B><FONT COLOR="#b42318">sameloop-openharmony</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="12" COLOR="#42566a">IPC services to develop</FONT></TD></TR></TABLE>>, fillcolor="#edf3fa"];
+w [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD><B><FONT COLOR="#b42318">sameloop-webos</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="12" COLOR="#42566a">LS2 services to develop</FONT></TD></TR></TABLE>>, fillcolor="#edf3fa"];
+sim [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD><B><FONT COLOR="#17324d">sameloop-plant</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="12" COLOR="#42566a">RK4 model delivered · used by KUKSA</FONT></TD></TR><TR><TD><FONT POINT-SIZE="12" COLOR="#42566a">AFB and UIs still use separate models</FONT></TD></TR></TABLE>>, fillcolor="#edf3fa"];
+hw [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD><B><FONT COLOR="#b42318">sameloop-zephyr</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="12" COLOR="#42566a">Optional firmware and hardware</FONT></TD></TR></TABLE>>, fillcolor="#edf7f0"];
+ui -> contract [label="Commands / states · adapters required", color="#42637e", fontcolor="#42637e", style="dashed", dir="both", constraint=true];
+contract -> a [label="Same behavior", color="#42637e", fontcolor="#42637e", style="dashed", dir="both", constraint=true];
+a -> choice [label="Provider adapter", color="#42637e", fontcolor="#42637e", style="dashed", dir="both", constraint=true];
+contract -> k [label="Same behavior", color="#42637e", fontcolor="#42637e", style="dashed", dir="both", constraint=true];
+k -> choice [label="Provider adapter", color="#42637e", fontcolor="#42637e", style="dashed", dir="both", constraint=true];
+contract -> o [label="Same behavior", color="#42637e", fontcolor="#42637e", style="dashed", dir="both", constraint=true];
+o -> choice [label="Provider adapter", color="#42637e", fontcolor="#42637e", style="dashed", dir="both", constraint=true];
+contract -> w [label="Same behavior", color="#42637e", fontcolor="#42637e", style="dashed", dir="both", constraint=true];
+w -> choice [label="Provider adapter", color="#42637e", fontcolor="#42637e", style="dashed", dir="both", constraint=true];
+{rank=same; a; k; o; w;}
+choice [label="Choose a provider", fillcolor="#fff8e9"];
+choice -> sim [label="Simulation", style=dashed];
+choice -> hw [label="Hardware through a gateway", style=dashed];
+{rank=same;sim;hw;}
+}

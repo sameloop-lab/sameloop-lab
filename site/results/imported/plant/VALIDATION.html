@@ -1,0 +1,14 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Validation — 25 octobre 2026 · SameLoop</title><link rel="stylesheet" href="../../../../assets/style.css"></head><body><header><img class="brand" src="../../../../branding/profile-picture.png" alt="SameLoop emblem"><div class="badge">Bind & Seek · SameLoop Lab · 0.2.0</div><h1>Validation — 25 octobre 2026</h1><nav><a href="../../../../index.html">Overview</a><a href="../../../../site/README.html">Read the guide</a><a href="../../../../index.html#diagrams">Diagrams</a><a href="../../../../index.html#documents">Documentation</a></nav></header><main><article><h1 id="validation-25-octobre-2026">Validation — 25 octobre 2026</h1>
+<p>Version 0.1.0 ; Linux x86_64, Python 3.12.14.</p>
+<ul>
+<li>6 tests unitaires exécutés et réussis : solutions analytiques thermique/fan,
+partition temporelle, refus atomique des valeurs invalides, inertie, pas nul.</li>
+<li>Wheel et archive source construites avec setuptools 84.2.1 / build 1.6.1.</li>
+<li>Modèle utilisé par le fournisseur dans les tests KUKSA réels de sameloop-agl.</li>
+</ul>
+<p>Le journal unitaire est dans <code>unit-results.txt</code>. Reproduction :
+<code>python -m unittest discover -s tests -v</code>.</p>
+<p>Non testé : RPM/mock/OBS, Fedora utilisateur, aarch64, intégration Flutter/LVGL,
+réutilisation dans AFB et matériel. Les tests analytiques valident ce modèle,
+pas la fidélité physique à un équipement réel.</p>
+</article></main><footer>SameLoop Lab · 25 October 2026 · Offline documentation</footer></body></html>

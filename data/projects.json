@@ -1,0 +1,152 @@
+[
+  {
+    "name": "sameloop-api-binding",
+    "role": "AFB api",
+    "status": "reported-tested",
+    "evidence": "results/imported/AFB.md",
+    "limitations": "Linux laboratory; no connected GUI, target-board or TLS qualification",
+    "doc": "redpesk/README.md",
+    "version": "0.1.0",
+    "repository": null
+  },
+  {
+    "name": "sameloop-sensor-binding",
+    "role": "AFB sensor",
+    "status": "reported-tested",
+    "evidence": "results/imported/AFB.md",
+    "limitations": "Linux laboratory; no connected GUI, target-board or TLS qualification",
+    "doc": "redpesk/README.md",
+    "version": "0.1.0",
+    "repository": null
+  },
+  {
+    "name": "sameloop-controller-binding",
+    "role": "AFB controller",
+    "status": "reported-tested",
+    "evidence": "results/imported/AFB.md",
+    "limitations": "Linux laboratory; no connected GUI, target-board or TLS qualification",
+    "doc": "redpesk/README.md",
+    "version": "0.1.0",
+    "repository": null
+  },
+  {
+    "name": "sameloop-fan-binding",
+    "role": "AFB fan",
+    "status": "reported-tested",
+    "evidence": "results/imported/AFB.md",
+    "limitations": "Linux laboratory; no connected GUI, target-board or TLS qualification",
+    "doc": "redpesk/README.md",
+    "version": "0.1.0",
+    "repository": null
+  },
+  {
+    "name": "sameloop-plant",
+    "role": "Thermal/fan model",
+    "status": "reported-tested",
+    "evidence": "results/imported/plant/VALIDATION.md",
+    "limitations": "6 unit tests; RK4 model not yet adopted by AFB or UI",
+    "doc": "plant/README.md",
+    "version": "0.1.0",
+    "repository": null
+  },
+  {
+    "name": "sameloop-agl",
+    "role": "KUKSA Linux provider/controller",
+    "status": "reported-tested",
+    "evidence": "results/imported/agl/VALIDATION.md",
+    "limitations": "8 unit tests + 13 real-broker scenarios; no complete AGL image",
+    "doc": "agl/README.md",
+    "version": "0.1.0",
+    "repository": null
+  },
+  {
+    "name": "sameloop-ui-lvgl",
+    "role": "LVGL interface",
+    "status": "reported-tested",
+    "evidence": "results/imported/LVGL.md",
+    "limitations": "Local simulation and headless SDL; no backend connection",
+    "doc": "ui/README.md",
+    "version": "0.1.0",
+    "repository": null
+  },
+  {
+    "name": "sameloop-ui-flutter",
+    "role": "Flutter interface",
+    "status": "delivered-unverified",
+    "evidence": "results/imported/FLUTTER.md",
+    "limitations": "Sources delivered; build/tests not established in available evidence",
+    "doc": "ui/README.md",
+    "version": "0.1.0",
+    "repository": null
+  },
+  {
+    "name": "sameloop-openharmony",
+    "role": "OpenHarmony services",
+    "status": "planned",
+    "evidence": null,
+    "limitations": "Design direction only; no delivered implementation",
+    "doc": "openharmony/README.md",
+    "version": null,
+    "repository": null
+  },
+  {
+    "name": "sameloop-webos",
+    "role": "webOS OSE services",
+    "status": "planned",
+    "evidence": null,
+    "limitations": "Design direction only; no delivered implementation",
+    "doc": "webos/README.md",
+    "version": null,
+    "repository": null
+  },
+  {
+    "name": "sameloop-zephyr",
+    "role": "MCU firmware",
+    "status": "planned",
+    "evidence": null,
+    "limitations": "Design direction only; no delivered implementation",
+    "doc": "zephyr/README.md",
+    "version": null,
+    "repository": null
+  },
+  {
+    "name": "sameloop-gateway",
+    "role": "Linux/MCU gateway",
+    "status": "planned",
+    "evidence": null,
+    "limitations": "Design direction only; no delivered implementation",
+    "doc": "zephyr/README.md",
+    "version": null,
+    "repository": null
+  },
+  {
+    "name": "sameloop-commonapi",
+    "role": "CommonAPI / SOME-IP extension",
+    "status": "planned",
+    "evidence": null,
+    "limitations": "Design direction only; no delivered implementation",
+    "doc": "commonapi/README.md",
+    "version": null,
+    "repository": null
+  },
+  {
+    "name": "sameloop-ui-qt",
+    "role": "Qt interface",
+    "status": "planned",
+    "evidence": null,
+    "limitations": "Design direction only; no delivered implementation",
+    "doc": "ui/README.md",
+    "version": null,
+    "repository": null
+  },
+  {
+    "name": "sameloop-tests",
+    "role": "Cross-stack test harness",
+    "status": "planned",
+    "evidence": null,
+    "limitations": "Design direction only; no delivered implementation",
+    "doc": "tests/README.md",
+    "version": null,
+    "repository": null
+  }
+]

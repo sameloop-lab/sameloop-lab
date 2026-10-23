@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AGL / KUKSA · SameLoop</title><link rel="stylesheet" href="../../assets/style.css"></head><body><header><img class="brand" src="../../branding/profile-picture.png" alt="SameLoop emblem"><div class="badge">Bind & Seek · SameLoop Lab · 0.2.0</div><h1>AGL / KUKSA</h1><nav><a href="../../index.html">Overview</a><a href="../../site/README.html">Read the guide</a><a href="../../index.html#diagrams">Diagrams</a><a href="../../index.html#documents">Documentation</a></nav></header><main><article><h1 id="agl-kuksa">AGL / KUKSA</h1>
+<p><code>sameloop-agl</code> 0.1.0 is a <strong>Python KUKSA-on-Linux prototype</strong>, not an AGL image.
+A provider and controller run as separate processes and communicate with
+KUKSA Databroker 0.7.1 using <code>kuksa.val.v1</code>; the provider calls <code>sameloop-plant</code>
+locally. A CLI offers commands, snapshots and a real streaming subscription.
+The SDK dependency is kuksa-client 0.6.0. No transparent VAL v2 fallback is used.</p>
+<p><img src="../../assets/diagrammes/05-agl.svg" alt="KUKSA profile"></p>
+<p><a href="../results/imported/agl/VALIDATION.html">Imported validation</a>: 8 unit tests and
+13 real-broker scenarios. The independent plant adds 6 unit tests.
+This profile runs on trusted loopback without TLS/JWT. On RPC failure, services
+exit with an error; automatic reconnect is not implemented. Role semantics are
+not enforced by the broker in this profile. No GUI has been connected yet.</p>
+<p>The signal catalog and its mapping are in <a href="../model/kuksa-mapping.html">model</a>.
+The separate implementation package contains installation/run instructions,
+Python wheels and draft RPM specs. RPM/OBS and Podman were not validated.
+An AGL/Yocto image requires its own pinned integration and test campaign.</p>
+<p>Upstream: https://github.com/eclipse-kuksa/kuksa-databroker</p>
+</article></main><footer>SameLoop Lab · 25 October 2026 · Offline documentation</footer></body></html>

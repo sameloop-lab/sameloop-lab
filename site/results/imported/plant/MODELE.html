@@ -1,0 +1,19 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Modèle de référence 0.1.0 · SameLoop</title><link rel="stylesheet" href="../../../../assets/style.css"></head><body><header><img class="brand" src="../../../../branding/profile-picture.png" alt="SameLoop emblem"><div class="badge">Bind & Seek · SameLoop Lab · 0.2.0</div><h1>Modèle de référence 0.1.0</h1><nav><a href="../../../../index.html">Overview</a><a href="../../../../site/README.html">Read the guide</a><a href="../../../../index.html#diagrams">Diagrams</a><a href="../../../../index.html#documents">Documentation</a></nav></header><main><article><h1 id="modele-de-reference-010">Modèle de référence 0.1.0</h1>
+<p>État initial : température 32,4 °C, ventilation appliquée 0 %, vitesse 0 tr/min.
+Ambiance : 20 °C. Entrées : commande u (%), apport thermique H (°C/s).</p>
+<pre><code class="language-text">dT/dt   = H - (0.015 + 0.12 × a / 100) × (T - 20)
+da/dt   = (u - a) / 0.6
+drpm/dt = (40 × a - rpm) / 0.8
+</code></pre>
+<p>Intégration couplée Runge-Kutta d'ordre 4, pas interne au plus 10 ms :
+<code>n=ceil(dt/0.01)</code>, <code>h=dt/n</code>. L'entrée reste constante pendant un appel.
+Un pas externe usuel vaut 100 ms. L'intégration n'utilise pas le temps mur.
+Les résultats sont reproductibles à tolérance flottante, pas garantis identiques
+bit à bit entre toutes architectures et toutes bibliothèques mathématiques.</p>
+<p>Deux cas analytiques servent de référence indépendante dans les tests :
+refroidissement sans ventilation et cascade de deux filtres du ventilateur.
+Le test par partition compare 1 seconde à dix pas de 100 ms.</p>
+<p>H normal vaut 0,18 ; la perturbation de chauffe vaut 1,2. C'est une maquette,
+pas la calibration d'une enceinte ou d'un moteur industriel. La température
+n'est pas artificiellement ramenée à la consigne par le simulateur.</p>
+</article></main><footer>SameLoop Lab · 25 October 2026 · Offline documentation</footer></body></html>

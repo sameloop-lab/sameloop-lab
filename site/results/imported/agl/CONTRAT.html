@@ -1,0 +1,110 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Contrat KUKSA 0.1.0 · SameLoop</title><link rel="stylesheet" href="../../../../assets/style.css"></head><body><header><img class="brand" src="../../../../branding/profile-picture.png" alt="SameLoop emblem"><div class="badge">Bind & Seek · SameLoop Lab · 0.2.0</div><h1>Contrat KUKSA 0.1.0</h1><nav><a href="../../../../index.html">Overview</a><a href="../../../../site/README.html">Read the guide</a><a href="../../../../index.html#diagrams">Diagrams</a><a href="../../../../index.html#documents">Documentation</a></nav></header><main><article><h1 id="contrat-kuksa-010">Contrat KUKSA 0.1.0</h1>
+<p>Le namespace <code>Vehicle.SameLoop</code> est privé à la démo, non normalisé par COVESA.
+Le JSON chargé par le broker et le VSPEC correspondent au catalogue
+<code>src/sameloop_agl/contract.py</code>. Le broker charge le JSON, pas le VSPEC.</p>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Type VSS</th>
+<th>Producteur / usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Settings</td>
+<td>actuator string</td>
+<td>target : requête <code>{id,mode,setpoint}</code> ; current : réglage accepté</td>
+</tr>
+<tr>
+<td>Command</td>
+<td>actuator string</td>
+<td>target : contrôleur <code>{generation,sequence,demand}</code> ; current : retour du fournisseur</td>
+</tr>
+<tr>
+<td>Faults</td>
+<td>actuator string</td>
+<td>target : laboratoire <code>{invalid,hot}</code> ; désactivé par défaut</td>
+</tr>
+<tr>
+<td>Frame</td>
+<td>sensor string</td>
+<td>Échantillon cohérent du fournisseur, génération et séquence</td>
+</tr>
+<tr>
+<td>State</td>
+<td>sensor string</td>
+<td>État cohérent du contrôleur, génération et séquence</td>
+</tr>
+<tr>
+<td>Temperature</td>
+<td>sensor double</td>
+<td>°C ; dernière mesure, consulter la qualité</td>
+</tr>
+<tr>
+<td>SensorValid</td>
+<td>sensor boolean</td>
+<td>Validité du capteur</td>
+</tr>
+<tr>
+<td>FanApplied / FanRpm</td>
+<td>sensor double</td>
+<td>% appliqué / tours par minute</td>
+</tr>
+<tr>
+<td>FanDemand</td>
+<td>sensor double</td>
+<td>% demandé par le contrôleur</td>
+</tr>
+<tr>
+<td>Mode / Setpoint</td>
+<td>sensor string / double</td>
+<td>OFF ou AUTO / °C accepté</td>
+</tr>
+<tr>
+<td>Available / Overheat</td>
+<td>sensor boolean</td>
+<td>Disponibilité / dernière alarme connue</td>
+</tr>
+<tr>
+<td>Error</td>
+<td>sensor string</td>
+<td>Dernier refus de réglage, vide si aucun</td>
+</tr>
+</tbody>
+</table>
+<h2 id="coherence-des-donnees">Cohérence des données</h2>
+<p>Les champs séparés sont pratiques pour explorer KUKSA. Un client ne doit pas
+supposer qu'un Get ou un Set multi-signaux offre une transaction métier globale.
+Les enveloppes Frame, State et Settings portent donc chacune un objet cohérent
+sur <strong>un seul signal string</strong>. C'est un choix de première version, avec un coût
+JSON supplémentaire à annoncer lors des comparaisons ; pas du tout-Protobuf typé.</p>
+<p>Le consommateur mémorise l'identité <code>(generation, sequence)</code> et l'heure monotone
+locale de réception d'une nouvelle séquence. Relire une valeur en cache ne
+rafraîchit pas sa qualité. Deux séquences croissantes de la même génération
+sont nécessaires à l'acquisition/reprise. Une ancienne génération connue est
+rejetée. Aucun timestamp monotone n'est comparé entre machines.</p>
+<h2 id="regulation">Régulation</h2>
+<p>OFF : demande zéro. AUTO : <code>clamp(20 × (température - consigne), 0, 100)</code>.
+Consigne finie 15..40 °C. Un réglage invalide est rejeté entièrement, sans changer
+le mode ou la consigne. Température disponible : valide, finie -40..150 °C,
+échantillon confirmé et reçu depuis moins de 1 seconde. Sinon demande zéro.
+Alarme &gt;50 °C même en OFF ; si la mesure disparaît, conserver l'alarme précédente
+avec <code>alarm_quality: unavailable</code>. Une valeur indisponible n'est pas remplacée
+par zéro. Le ventilateur conserve son inertie : demande zéro ≠ arrêt instantané.</p>
+<p>Le fournisseur applique une commande seulement après validation des bornes et
+de la séquence. Après 1 seconde sans <strong>nouvelle</strong> commande, la demande retombe
+à zéro. L'intégration temporelle est coupée à l'échéance du watchdog. Au redémarrage
+du fournisseur, la cible Command mise en cache est effacée. Le contrôleur
+redémarre OFF/25. Une suspension de plus de 60 secondes arrête le fournisseur
+avec erreur plutôt que d'inventer une trajectoire.</p>
+<h2 id="securite-et-limites">Sécurité et limites</h2>
+<p>Le profil en clair est restreint au loopback dans notre client et nos scripts.
+Il n'active pas JWT : <strong>les catégories sensor/actuator ne sont pas des droits</strong>.
+Tout client local ayant accès au broker peut écrire des données, y compris les
+signaux internes. Ce profil sert à une démonstration sur une machine de confiance.
+Le verrou de processus est local à l'utilisateur, pas une exclusion distribuée.
+TLS, mTLS, rôles, authentification, accès distant et commande de matériel sont
+hors de cette livraison. La politique demande zéro en défaut est celle du
+simulateur ; elle n'est pas une analyse de sûreté d'un refroidissement industriel.</p>
+</article></main><footer>SameLoop Lab · 25 October 2026 · Offline documentation</footer></body></html>

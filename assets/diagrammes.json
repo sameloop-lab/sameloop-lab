@@ -1,0 +1,100 @@
+[
+  {
+    "id": "01-fonctionnel",
+    "titre": "01 · A box, a thermometer and a fan",
+    "sous_titre": "Functional view · no technical background required",
+    "source": "assets/sources/01-fonctionnel.dot",
+    "svg": "assets/diagrammes/01-fonctionnel.svg"
+  },
+  {
+    "id": "02-etats",
+    "titre": "02 · Demo states",
+    "sous_titre": "OFF/AUTO = user choice · availability and alarm are separate dimensions",
+    "source": "assets/sources/02-etats.dot",
+    "svg": "assets/diagrammes/02-etats.svg"
+  },
+  {
+    "id": "03-panorama",
+    "titre": "03 · Same function, different implementations",
+    "sous_titre": "Target architecture · choose one stack · red names = future projects",
+    "source": "assets/sources/03-panorama.dot",
+    "svg": "assets/diagrammes/03-panorama.svg"
+  },
+  {
+    "id": "04-afb",
+    "titre": "04 · redpesk / AFB: four bindings delivered",
+    "sous_titre": "Solid = reported lab integration · dashed = future connection",
+    "source": "assets/sources/04-afb.dot",
+    "svg": "assets/diagrammes/04-afb.svg"
+  },
+  {
+    "id": "05-agl",
+    "titre": "05 · KUKSA on Linux: profile 0.1.0 delivered",
+    "sous_titre": "Imported evidence · not a complete AGL image",
+    "source": "assets/sources/05-agl.dot",
+    "svg": "assets/diagrammes/05-agl.svg"
+  },
+  {
+    "id": "06-openharmony",
+    "titre": "06 · OpenHarmony: IPC services and external UI",
+    "sous_titre": "Proposed architecture · same device for the first prototype",
+    "source": "assets/sources/06-openharmony.dot",
+    "svg": "assets/diagrammes/06-openharmony.svg"
+  },
+  {
+    "id": "07-webos",
+    "titre": "07 · webOS OSE: services on Luna Bus",
+    "sous_titre": "Proposed architecture · OSE target; commercial TV support not assumed",
+    "source": "assets/sources/07-webos.dot",
+    "svg": "assets/diagrammes/07-webos.svg"
+  },
+  {
+    "id": "08-zephyr",
+    "titre": "08 · Zephyr: software zbus and explicit external link",
+    "sous_titre": "Shown variant: local MCU control · all connections remain to be developed",
+    "source": "assets/sources/08-zephyr.dot",
+    "svg": "assets/diagrammes/08-zephyr.svg"
+  },
+  {
+    "id": "09-materiel",
+    "titre": "09 · From messages to wires: three alternative links",
+    "sous_titre": "Conceptual diagram · pinout, transceivers, power and drivers require validation",
+    "source": "assets/sources/09-materiel.dot",
+    "svg": "assets/diagrammes/09-materiel.svg"
+  },
+  {
+    "id": "10-tls",
+    "titre": "10 · Plaintext, server-authenticated TLS and mTLS",
+    "sous_titre": "Security concepts · no SameLoop TLS profile tested yet",
+    "source": "assets/sources/10-tls.dot",
+    "svg": "assets/diagrammes/10-tls.svg"
+  },
+  {
+    "id": "11-commonapi",
+    "titre": "11 · CommonAPI / SOME/IP: comparison extension",
+    "sous_titre": "Proposed architecture · optional stack beyond the MVP",
+    "source": "assets/sources/11-commonapi.dot",
+    "svg": "assets/diagrammes/11-commonapi.svg"
+  },
+  {
+    "id": "12-tests",
+    "titre": "12 · Every test level has a scope",
+    "sous_titre": "Passing unit tests does not validate the network, UI or hardware",
+    "source": "assets/sources/12-tests.dot",
+    "svg": "assets/diagrammes/12-tests.svg"
+  },
+  {
+    "id": "13-livraison",
+    "titre": "13 · From repositories to reproducible demos",
+    "sous_titre": "Proposed workflow · build systems remain specific to each target",
+    "source": "assets/sources/13-livraison.dot",
+    "svg": "assets/diagrammes/13-livraison.svg"
+  },
+  {
+    "id": "14-interop",
+    "titre": "14 · Connect two stacks with a single controller",
+    "sous_titre": "Proposed first step: AFB → KUKSA telemetry only",
+    "source": "assets/sources/14-interop.dot",
+    "svg": "assets/diagrammes/14-interop.svg"
+  }
+]

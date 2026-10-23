@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Communication layers · SameLoop</title><link rel="stylesheet" href="../../assets/style.css"></head><body><header><img class="brand" src="../../branding/profile-picture.png" alt="SameLoop emblem"><div class="badge">Bind & Seek · SameLoop Lab · 0.2.0</div><h1>Communication layers</h1><nav><a href="../../index.html">Overview</a><a href="../../site/README.html">Read the guide</a><a href="../../index.html#diagrams">Diagrams</a><a href="../../index.html#documents">Documentation</a></nav></header><main><article><h1 id="communication-layers">Communication layers</h1>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Examples</th>
+<th>SameLoop status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Local service mechanism</td>
+<td>AFB subcalls, OpenHarmony IPC, webOS LS2</td>
+<td>AFB demonstrated; other two planned</td>
+</tr>
+<tr>
+<td>Firmware software bus</td>
+<td>Zephyr zbus</td>
+<td>Planned; messages in firmware memory</td>
+</tr>
+<tr>
+<td>Network application protocol</td>
+<td>AFB WSJ1, KUKSA VAL gRPC, HTTP APIs</td>
+<td>AFB/KUKSA loopback reports available</td>
+</tr>
+<tr>
+<td>Transport protection</td>
+<td>HTTPS, WSS, gRPC with TLS</td>
+<td>No SameLoop validation yet</td>
+</tr>
+<tr>
+<td>Physical/peripheral link</td>
+<td>CAN, UART, I²C, SPI, Ethernet, Wi-Fi</td>
+<td>Candidate hardware paths, not implemented</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../assets/diagrammes/10-tls.svg" alt="Authentication modes"></p>
+<p>TLS with server authentication and mutual TLS describe authentication modes;
+TLS 1.2 and 1.3 are protocol versions. Authentication does not define application
+permissions. TLS does not wrap local zbus channels or turn I²C/CAN into secure
+network protocols. A gateway must explicitly define trust boundaries.</p>
+<p><img src="../../assets/diagrammes/14-interop.svg" alt="Read-only interop proposal"></p>
+<p>Cross-stack interop is planned, initially one-way telemetry. A single controller
+must own an actuator. No AFB/KUKSA bridge is currently delivered.</p>
+</article></main><footer>SameLoop Lab · 25 October 2026 · Offline documentation</footer></body></html>

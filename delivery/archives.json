@@ -1,0 +1,68 @@
+[
+  {
+    "filename": "sameloop-afb-bindings-0.1.0.zip",
+    "sha256": "2e259252af5630482459a256d2ab212598fbbf95b0f2653b66b6dd0735ad60b5",
+    "included": false,
+    "url": null
+  },
+  {
+    "filename": "sameloop-agl-0.1.0.zip",
+    "sha256": "6dcaa6e9d2365bc3cb4e3ca79a6f3778dfbdf807318957771cb8e59cf135a286",
+    "included": false,
+    "url": null
+  },
+  {
+    "filename": "sameloop-api-binding-0.1.0.zip",
+    "sha256": "dc7d1a63e55a2a5fbfc1718e72b8948b883f8654efbd620772afb2eff98f86bd",
+    "included": false,
+    "url": null
+  },
+  {
+    "filename": "sameloop-controller-binding-0.1.0.zip",
+    "sha256": "d6d2410c1cb952e545d30480820e763c5075dc3b07342b9be0e611bca4707503",
+    "included": false,
+    "url": null
+  },
+  {
+    "filename": "sameloop-dev-project-0.1.0.zip",
+    "sha256": "c6da83caed8adb2dae53a6b7b6adcf0793ccc1534cd5390174c3fef51f07818c",
+    "included": false,
+    "url": null
+  },
+  {
+    "filename": "sameloop-fan-binding-0.1.0.zip",
+    "sha256": "062fc4a135d82d3de70117c9f6a35dd3c4a7c931f7d1087a494cb9e394d541e1",
+    "included": false,
+    "url": null
+  },
+  {
+    "filename": "sameloop-kuksa-0.1.0.zip",
+    "sha256": "b737c6721781dd157ba9cb51fe41664a69b6da1db436d1b9c8e8986569b2f4cb",
+    "included": false,
+    "url": null
+  },
+  {
+    "filename": "sameloop-plant-0.1.0.zip",
+    "sha256": "1a208ac5a05fc621cb266fc2bfc76f8b6c52321a81d99a847ba12f98616b38db",
+    "included": false,
+    "url": null
+  },
+  {
+    "filename": "sameloop-sensor-binding-0.1.0.zip",
+    "sha256": "af2e837abe7cc2788b293fe8ba0b87f379ebf40ca3ece0430581410ea4a652d5",
+    "included": false,
+    "url": null
+  },
+  {
+    "filename": "sameloop-ui-flutter-0.1.0.zip",
+    "sha256": "16730c8af9d8d390e48471659210202f2d785862bc0c43fe5c759e62a49b909c",
+    "included": false,
+    "url": null
+  },
+  {
+    "filename": "sameloop-ui-lvgl-0.1.0.zip",
+    "sha256": "811b3cc8b62b4689541e36e0fa3cd6ff278a360b6231b02473ee36dce628330b",
+    "included": false,
+    "url": null
+  }
+]

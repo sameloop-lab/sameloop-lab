@@ -1,0 +1,57 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Original catalog ↔ KUKSA 0.1.0 · SameLoop</title><link rel="stylesheet" href="../../assets/style.css"></head><body><header><img class="brand" src="../../branding/profile-picture.png" alt="SameLoop emblem"><div class="badge">Bind & Seek · SameLoop Lab · 0.2.0</div><h1>Original catalog ↔ KUKSA 0.1.0</h1><nav><a href="../../index.html">Overview</a><a href="../../site/README.html">Read the guide</a><a href="../../index.html#diagrams">Diagrams</a><a href="../../index.html#documents">Documentation</a></nav></header><main><article><h1 id="original-catalog-kuksa-010">Original catalog ↔ KUKSA 0.1.0</h1>
+<p>The supplied original <code>sameloop.vspec</code> is preserved unchanged. KUKSA 0.1.0 uses
+a separate private catalog; do not load the original and assume the runtime
+paths match. Neither catalog is a standard COVESA SameLoop model.</p>
+<table>
+<thead>
+<tr>
+<th>Original relative path</th>
+<th>KUKSA 0.1.0 relative path / semantics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Temperature.Value</td>
+<td>Temperature (double); also Frame.temperature</td>
+</tr>
+<tr>
+<td>Temperature.IsValid</td>
+<td>SensorValid; Frame.valid plus consumer freshness</td>
+</tr>
+<tr>
+<td>Fan.DutyCycle</td>
+<td>FanDemand (request), FanApplied (feedback), internal Command envelope</td>
+</tr>
+<tr>
+<td>Fan.Speed</td>
+<td>FanRpm (double)</td>
+</tr>
+<tr>
+<td>Controller.Setpoint</td>
+<td>Settings target/current JSON, Setpoint accepted value</td>
+</tr>
+<tr>
+<td>Controller.Mode</td>
+<td>Settings target/current JSON, Mode accepted value</td>
+</tr>
+<tr>
+<td>Alarm.Overtemperature</td>
+<td>Overheat, with State.alarm_quality</td>
+</tr>
+<tr>
+<td>Alarm.SensorUnavailable</td>
+<td>Inverse of Available, including freshness</td>
+</tr>
+<tr>
+<td>Model</td>
+<td>No dedicated equivalent in runtime 0.1.0; identify via delivery versions</td>
+</tr>
+</tbody>
+</table>
+<p>All paths are relative to Vehicle.SameLoop. Integer/float representation differs
+for fan duty/speed; consumers must account for it. Settings is a single JSON
+string actuator containing id/mode/setpoint, so the request is treated atomically
+by the controller. Frame and State carry coherent JSON snapshots with sequences.
+The VSPEC/JSON under kuksa-0.1.0 is copied from the implementation delivery.
+No DBC, CAN mapping or general VSPEC compiler is supplied here.</p>
+</article></main><footer>SameLoop Lab · 25 October 2026 · Offline documentation</footer></body></html>

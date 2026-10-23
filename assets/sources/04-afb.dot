@@ -1,0 +1,25 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.35", ranksep="0.58", splines=polyline, fontname="DejaVu Sans", fontsize=19, labelloc=t, label="04 · redpesk / AFB: four bindings delivered\nSolid = reported lab integration · dashed = future connection"];
+node [shape=box, style="rounded,filled", fillcolor="#f1f5f9", color="#a6b6c8", penwidth=1.3, fontname="DejaVu Sans", fontsize=13, margin="0.18,0.13"];
+edge [fontname="DejaVu Sans", fontsize=11, color="#42637e", fontcolor="#36536b", arrowsize=0.7, penwidth=1.3];
+ui [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD><B><FONT COLOR="#17324d">Flutter / LVGL</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="12" COLOR="#42566a">Existing UIs with local backends</FONT></TD></TR></TABLE>>, fillcolor="#edf3fa"];
+client [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD><B><FONT COLOR="#17324d">Python / curl test client</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="12" COLOR="#42566a">Real HTTP and WebSocket connections</FONT></TD></TR></TABLE>>, fillcolor="#edf3fa"];
+subgraph cluster_binder { label="One Linux afb-binder process · three private APIs"; fontsize=14; style="rounded"; color="#c6d4e1"; bgcolor="#fafcfe";
+api [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD><B><FONT COLOR="#17324d">sameloop-api-binding</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="12" COLOR="#42566a">Public facade and subscriptions</FONT></TD></TR></TABLE>>, fillcolor="#edf3fa"];
+ctrl [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD><B><FONT COLOR="#17324d">sameloop-controller-binding</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="12" COLOR="#42566a">Setpoint, control, alarms</FONT></TD></TR></TABLE>>, fillcolor="#edf3fa"];
+sensor [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD><B><FONT COLOR="#17324d">sameloop-sensor-binding</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="12" COLOR="#42566a">Measurement and thermal simulation</FONT></TD></TR></TABLE>>, fillcolor="#edf3fa"];
+fan [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD><B><FONT COLOR="#17324d">sameloop-fan-binding</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="12" COLOR="#42566a">Command, inertia, speed, watchdog</FONT></TD></TR></TABLE>>, fillcolor="#edf3fa"];
+api -> ctrl [label="AFB subcalls + events", color="#42637e", fontcolor="#42637e", style="solid", dir="both", constraint=true];
+ctrl -> sensor [label="Read temperature / quality", color="#42637e", fontcolor="#42637e", style="solid", dir="both", constraint=true];
+ctrl -> fan [label="Apply duty / read feedback", color="#42637e", fontcolor="#42637e", style="solid", dir="both", constraint=true];
+sensor -> fan [label="Read applied fan output", color="#42637e", fontcolor="#42637e", style="solid", dir="both", constraint=false];
+{rank=same; sensor; fan;}
+}
+ui -> api [label="WSJ1 / WebSocket\nAdapters to develop", color="#42637e", fontcolor="#42637e", style="dashed", dir="both", constraint=true];
+client -> api [label="HTTP/JSON + WSJ1\nTCP loopback, no TLS", color="#42637e", fontcolor="#42637e", style="solid", dir="both", constraint=true];
+gw [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD><B><FONT COLOR="#b42318">sameloop-gateway</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="12" COLOR="#42566a">Proposed hardware extension</FONT></TD></TR><TR><TD><FONT POINT-SIZE="12" COLOR="#42566a">UART / CAN / IP, depending on profile</FONT></TD></TR></TABLE>>, fillcolor="#edf3fa"];
+sensor -> gw [label="Future hardware provider", color="#42637e", fontcolor="#42637e", style="dashed", dir="both", constraint=true];
+sec [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD><B><FONT COLOR="#17324d">HTTPS/WSS, TLS/mTLS</FONT></B></TD></TR><TR><TD><FONT POINT-SIZE="12" COLOR="#42566a">Configuration option to validate</FONT></TD></TR><TR><TD><FONT POINT-SIZE="12" COLOR="#42566a">Not tested in AFB 0.1.0</FONT></TD></TR></TABLE>>, fillcolor="#fff8e9"];
+ui -> sec [label="Alternative network profile", color="#42637e", fontcolor="#42637e", style="dashed", dir="forward", constraint=false];
+{rank=same; ui; client;}
+}

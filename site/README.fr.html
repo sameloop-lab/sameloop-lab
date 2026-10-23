@@ -1,0 +1,22 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SameLoop Lab · SameLoop</title><link rel="stylesheet" href="../assets/style.css"></head><body><header><img class="brand" src="../branding/profile-picture.png" alt="SameLoop emblem"><div class="badge">Bind & Seek · SameLoop Lab · 0.2.0</div><h1>SameLoop Lab</h1><nav><a href="../index.html">Overview</a><a href="../site/README.html">Read the guide</a><a href="../index.html#diagrams">Diagrams</a><a href="../index.html#documents">Documentation</a></nav></header><main><article><h1 id="sameloop-lab">SameLoop Lab</h1>
+<p><strong>Bind &amp; Seek — Une même boucle de contrôle, plusieurs piles embarquées.</strong></p>
+<p>SameLoop compare des architectures de services à travers une démo commune :
+une température, une consigne, un contrôleur et un ventilateur.</p>
+<p>Ouvrir <a href="../index.html">index.html</a> après extraction pour consulter le tableau de bord
+hors ligne, les états des projets et les 14 schémas. La documentation publique
+principale est en anglais ; les schémas et les preuves importés du dossier de
+développement conservent leur français d'origine.</p>
+<p>Les bindings AFB, le profil KUKSA sur PC et le modèle physique disposent de preuves
+de tests importées. LVGL a été testé en simulation sans écran. Flutter est livré
+sans preuve de compilation établie dans ce dossier. OpenHarmony, webOS, Zephyr
+et CommonAPI restent des propositions. Une GUI reliée à un backend n'est pas
+encore validée. Voir <a href="docs/deviations.html">les limites</a>.</p>
+<p>Le catalogue de signaux d'origine reste conservé. Le profil KUKSA livré utilise
+un encodage différent, documenté dans <a href="model/kuksa-mapping.html">le mapping</a>.
+Les frameworks de mocks restent une piste future : le simulateur physique,
+les vrais brokers et les outils de perturbation ont des rôles distincts.</p>
+<p>Pour reconstruire : <code>npm ci</code>, puis <code>npm run build</code>, puis <code>npm run check</code>.
+Aucune installation n'est nécessaire pour consulter les HTML et SVG fournis.</p>
+<p>Organisation : https://github.com/sameloop-lab</p>
+<p>Dépôt : https://github.com/sameloop-lab/sameloop-lab</p>
+</article></main><footer>SameLoop Lab · 25 October 2026 · Offline documentation</footer></body></html>

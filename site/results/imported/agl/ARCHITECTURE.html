@@ -1,0 +1,33 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Architecture livrée · SameLoop</title><link rel="stylesheet" href="../../../../assets/style.css"></head><body><header><img class="brand" src="../../../../branding/profile-picture.png" alt="SameLoop emblem"><div class="badge">Bind & Seek · SameLoop Lab · 0.2.0</div><h1>Architecture livrée</h1><nav><a href="../../../../index.html">Overview</a><a href="../../../../site/README.html">Read the guide</a><a href="../../../../index.html#diagrams">Diagrams</a><a href="../../../../index.html#documents">Documentation</a></nav></header><main><article><h1 id="architecture-livree">Architecture livrée</h1>
+<pre><code class="language-mermaid">flowchart TB
+    CLI[&quot;CLI : réglages et observation&quot;]
+    B[&quot;KUKSA Databroker 0.7.1 — VAL v1&quot;]
+    C[&quot;Processus contrôleur — OFF/AUTO&quot;]
+    P[&quot;Processus fournisseur — capteur et actionneur&quot;]
+    M[&quot;sameloop-plant — modèle Python local&quot;]
+    CLI &lt;--&gt;|&quot;gRPC : Get / Set / Subscribe&quot;| B
+    C &lt;--&gt;|&quot;gRPC : Frame, Settings, Command, State&quot;| B
+    P &lt;--&gt;|&quot;gRPC : Command, Frame, retours&quot;| B
+    P &lt;--&gt;|&quot;Appels Python, aucune socket&quot;| M
+</code></pre>
+<p>Le broker est un véritable binaire amont ; aucun faux broker dans les tests
+d'intégration. Fournisseur et contrôleur sont des processus séparés. La physique
+capteur/fan est regroupée dans un fournisseur pour préserver un état cohérent.
+Chaque service effectue une boucle de lecture/publication nominale à 10 Hz.
+La commande <code>watch</code> montre séparément un abonnement gRPC serveur vers client.</p>
+<p>Le chemin AFB n'est pas utilisé dans cette implémentation. Aucune traduction
+AFB ↔ KUKSA ni adaptation Flutter/LVGL n'est incluse. Le modèle Python pourrait
+être réutilisé dans un fournisseur AFB ou derrière une passerelle ; cela reste
+un développement distinct. Zephyr, zbus, UART et CAN ne sont pas simulés en tant
+que transports : ils ne sont pas présents dans cette version.</p>
+<h2 id="prochaines-etapes">Prochaines étapes</h2>
+<ol>
+<li>Rejouer les tests sur Fedora et relier une UI à VAL v1.</li>
+<li>Décider si garder les enveloppes JSON ou passer à un contrat plus typé.</li>
+<li>Ajouter autorisations et TLS avant une ouverture réseau.</li>
+<li>Figer l'image AGL et ses versions KUKSA/Python avant recette Yocto.</li>
+<li>Remplacer le fournisseur simulé par un fournisseur matériel qualifié.</li>
+</ol>
+<p>L'API VAL v2 impose de revoir le chemin d'actuation ; changer simplement le nom
+d'import Python ne constitue pas un portage.</p>
+</article></main><footer>SameLoop Lab · 25 October 2026 · Offline documentation</footer></body></html>

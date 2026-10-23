@@ -1,0 +1,22 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Signal model · SameLoop</title><link rel="stylesheet" href="../../assets/style.css"></head><body><header><img class="brand" src="../../branding/profile-picture.png" alt="SameLoop emblem"><div class="badge">Bind & Seek · SameLoop Lab · 0.2.0</div><h1>Signal model</h1><nav><a href="../../index.html">Overview</a><a href="../../site/README.html">Read the guide</a><a href="../../index.html#diagrams">Diagrams</a><a href="../../index.html#documents">Documentation</a></nav></header><main><article><h1 id="signal-model">Signal model</h1>
+<p><a href="../../model/sameloop.vspec">sameloop.vspec</a> is the existing custom SameLoop catalog. Its
+<code>Vehicle.SameLoop</code> paths are project extensions, not standard vehicle signals.
+The model contains metadata only. It does not implement regulation or provide values.</p>
+<p>The <a href="../docs/functional-spec.html">functional specification</a> is the common behavioral
+reference. Update both documents when signal semantics change. Freshness, quality,
+command outcomes and service availability need adapter metadata beyond this file.</p>
+<p>The VSpec comments contain a candidate vss-tools 6.x export command. Exporter,
+unit/quantity catalogs and KUKSA API versions must be pinned and verified together.
+The original catalog has not been validated with vss-tools or a running
+Databroker. The separate <a href="../../model/kuksa-0.1.0/vss.json">KUKSA 0.1.0 catalog</a> was used in
+the reported real-broker tests; its paths differ. See <a href="kuksa-mapping.html">the mapping</a>.</p>
+<p>Future DBC and mapping files belong here with provenance, compatible tool revisions
+and an end-to-end validation procedure. No hypothetical mapping is presented as an
+existing working integration.</p>
+<p>References:</p>
+<ul>
+<li><a href="https://github.com/COVESA/vehicle_signal_specification">COVESA VSS</a></li>
+<li><a href="https://github.com/COVESA/vss-tools">VSS tools</a></li>
+<li><a href="https://github.com/eclipse-kuksa/kuksa-can-provider">KUKSA CAN Provider</a></li>
+</ul>
+</article></main><footer>SameLoop Lab · 25 October 2026 · Offline documentation</footer></body></html>

@@ -1,0 +1,53 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Comparison method · SameLoop</title><link rel="stylesheet" href="../../assets/style.css"></head><body><header><img class="brand" src="../../branding/profile-picture.png" alt="SameLoop emblem"><div class="badge">Bind & Seek · SameLoop Lab · 0.2.0</div><h1>Comparison method</h1><nav><a href="../../index.html">Overview</a><a href="../../site/README.html">Read the guide</a><a href="../../index.html#diagrams">Diagrams</a><a href="../../index.html#documents">Documentation</a></nav></header><main><article><h1 id="comparison-method">Comparison method</h1>
+<p>Compare functional behavior first. Separate middleware observations under matched
+conditions from full-platform observations on different operating systems or boards.
+A whole-platform result cannot establish that its transport alone caused a difference.</p>
+<p>For every run, record immutable source revisions, platform/kernel/toolchain versions,
+hardware, CPU settings, process topology, UI placement, security settings, payload,
+publication rate, warm-up, duration, repetitions and measurement overhead.</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Evidence to retain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Functionality</td>
+<td>Common scenario outcomes, errors and known deviations</td>
+</tr>
+<tr>
+<td>Recovery</td>
+<td>Failure injection time, detection time, usable service return time</td>
+</tr>
+<tr>
+<td>Communication</td>
+<td>Defined timing boundaries, timestamp source, distributions and losses</td>
+</tr>
+<tr>
+<td>Resources</td>
+<td>Per-process CPU/RSS plus attributable broker and adapter overhead</td>
+</tr>
+<tr>
+<td>Integration</td>
+<td>Native API mapping, lifecycle, access controls and diagnostic steps</td>
+</tr>
+<tr>
+<td>Build/delivery</td>
+<td>Clean build steps, pinned inputs, package/image sizes and installation</td>
+</tr>
+<tr>
+<td>Engineering effort</td>
+<td>Explicit counting method for handwritten/generated code and work scope</td>
+</tr>
+</tbody>
+</table>
+<p>For cross-host latency, synchronize clocks and report uncertainty, or use round-trip
+measurements. Do not subtract unrelated clocks. Report median and tail values only
+with raw samples, sample count and method. Never substitute missing results with zero.
+No measurements or rankings have been produced yet.</p>
+<p>Use <a href="../results/README.html">results</a> for evidence and <a href="../delivery/README.html">delivery</a>
+for reproducible releases. UI framework comparisons are a separate experiment from
+service-stack comparisons.</p>
+</article></main><footer>SameLoop Lab · 25 October 2026 · Offline documentation</footer></body></html>

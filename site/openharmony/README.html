@@ -1,0 +1,30 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>OpenHarmony · SameLoop</title><link rel="stylesheet" href="../../assets/style.css"></head><body><header><img class="brand" src="../../branding/profile-picture.png" alt="SameLoop emblem"><div class="badge">Bind & Seek · SameLoop Lab · 0.2.0</div><h1>OpenHarmony</h1><nav><a href="../../index.html">Overview</a><a href="../../site/README.html">Read the guide</a><a href="../../index.html#diagrams">Diagrams</a><a href="../../index.html#documents">Documentation</a></nav></header><main><article><h1 id="openharmony">OpenHarmony</h1>
+<p><strong>Status: planned; no implementation or validated build is included.</strong></p>
+<h2 id="intended-approach">Intended approach</h2>
+<p>Explore System Abilities registered with SAMgr and local IPC proxy/stub interfaces. Start with one device; distributed communication is a later, separately validated extension.</p>
+<p>Select the OpenHarmony system profile, release, supported board and native build/package flow. Do not assume it can be deployed like an ordinary Linux daemon or that Flutter is supported on the selected target.</p>
+<h2 id="common-contract">Common contract</h2>
+<p>Implement the <a href="../docs/functional-spec.html">functional specification</a> and run the
+<a href="../scenarios/README.html">common scenarios</a>. The <a href="../model/README.html">signal model</a>
+provides a vocabulary; native APIs may use a different representation.</p>
+<h2 id="implementation-record-to-complete">Implementation record to complete</h2>
+<ul>
+<li>Supported release, board/host, prerequisites and immutable source revisions.</li>
+<li>Process/service layout and signal-to-native-API mapping.</li>
+<li>Command acknowledgement versus applied state; error and quality propagation.</li>
+<li>Authentication/authorization, lifecycle, subscriptions and recovery.</li>
+<li>Reproducible build, install, start, stop and uninstall commands.</li>
+<li>UI adapter and any additional bridge or remote process.</li>
+<li>Component repositories, licenses and package/image references.</li>
+<li>Scenario outcomes, limitations and links to result reports.</li>
+</ul>
+<p>No setup commands are provided until they have been exercised on the selected
+release. Use the <a href="../delivery/README.html">delivery index</a> for external components and
+release artifacts. Pin dependencies rather than relying on a moving branch.</p>
+<h2 id="upstream-reference">Upstream reference</h2>
+<ul>
+<li><a href="https://github.com/openharmony/communication_ipc">Official project documentation or source</a></li>
+</ul>
+<p>This reference informs the planned approach; it is not proof that SameLoop Lab
+already runs on this platform.</p>
+</article></main><footer>SameLoop Lab · 25 October 2026 · Offline documentation</footer></body></html>

@@ -1,0 +1,78 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Common acceptance scenarios · SameLoop</title><link rel="stylesheet" href="../../assets/style.css"></head><body><header><img class="brand" src="../../branding/profile-picture.png" alt="SameLoop emblem"><div class="badge">Bind & Seek · SameLoop Lab · 0.2.0</div><h1>Common acceptance scenarios</h1><nav><a href="../../index.html">Overview</a><a href="../../site/README.html">Read the guide</a><a href="../../index.html#diagrams">Diagrams</a><a href="../../index.html#documents">Documentation</a></nav></header><main><article><h1 id="common-acceptance-scenarios">Common acceptance scenarios</h1>
+<p>Status: specification only; no automated runner exists yet.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Action</th>
+<th>Expected observation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S01</td>
+<td>Start all components</td>
+<td>F01 defaults; actual values absent until published</td>
+</tr>
+<tr>
+<td>S02</td>
+<td>Observe valid measurements</td>
+<td>10 Hz producer; fresh temperature and fan feedback</td>
+</tr>
+<tr>
+<td>S03</td>
+<td>Request a valid setpoint and AUTO</td>
+<td>Accepted settings visible; fan follows common control law</td>
+</tr>
+<tr>
+<td>S04</td>
+<td>Request OFF</td>
+<td>Requested duty becomes zero; applied duty and speed remain distinct feedback</td>
+</tr>
+<tr>
+<td>S05</td>
+<td>Request invalid mode, NaN or out-of-range setpoint</td>
+<td>Explicit rejection; accepted state unchanged</td>
+</tr>
+<tr>
+<td>S06</td>
+<td>Mark sensor invalid, then separately pause updates</td>
+<td>Unavailable alarm; timeout behavior and F05 policy</td>
+</tr>
+<tr>
+<td>S07</td>
+<td>Restore valid fresh samples</td>
+<td>Unavailable clears; regulation resumes if still AUTO</td>
+</tr>
+<tr>
+<td>S08</td>
+<td>Inject 51 °C, then 50 °C, with valid data</td>
+<td>Overtemperature true, then false</td>
+</tr>
+<tr>
+<td>S09</td>
+<td>Stop/restart provider, controller and broker separately</td>
+<td>Missing services visible; resubscription; controller restart returns OFF</td>
+</tr>
+<tr>
+<td>S10</td>
+<td>Disconnect UI with a pending request, then reconnect</td>
+<td>No silent replay; refresh applied state</td>
+</tr>
+<tr>
+<td>S11</td>
+<td>Attempt operator writes as a viewer</td>
+<td>Backend rejects unauthorized requests</td>
+</tr>
+<tr>
+<td>S12</td>
+<td>Repeat the same deterministic input scenario</td>
+<td>Equivalent logical outcomes within declared tolerances</td>
+</tr>
+</tbody>
+</table>
+<p>Record prerequisites, stimuli, timestamps, observations and pass/fail/unsupported
+for each platform. Reset to documented initial conditions between tests. Precise
+settling and timing tolerances remain to be chosen; do not claim S03/S12 numerical
+conformance before the simulator and control law are fixed.</p>
+</article></main><footer>SameLoop Lab · 25 October 2026 · Offline documentation</footer></body></html>

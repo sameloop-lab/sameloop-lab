@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Construction et livraison · SameLoop</title><link rel="stylesheet" href="../../../../assets/style.css"></head><body><header><img class="brand" src="../../../../branding/profile-picture.png" alt="SameLoop emblem"><div class="badge">Bind & Seek · SameLoop Lab · 0.2.0</div><h1>Construction et livraison</h1><nav><a href="../../../../index.html">Overview</a><a href="../../../../site/README.html">Read the guide</a><a href="../../../../index.html#diagrams">Diagrams</a><a href="../../../../index.html#documents">Documentation</a></nav></header><main><article><h1 id="construction-et-livraison">Construction et livraison</h1>
+<h2 id="paquets-python">Paquets Python</h2>
+<p>Depuis le parent des projets, dans un environnement qui contient <code>build</code> :</p>
+<pre><code class="language-bash">python -m build sameloop-plant
+python -m build sameloop-agl
+</code></pre>
+<p>Chaque projet produit un sdist <code>.tar.gz</code> et une wheel <code>.whl</code>. Le fichier wheel
+AGL installe les configurations et scripts dans <code>share/sameloop-agl</code> sous le
+préfixe d'installation. Le dépôt source conserve les tests et les documents.
+Les dépendances tierces restent externes ; aucun binaire KUKSA n'est repackagé.</p>
+<h2 id="rpm-obs">RPM / OBS</h2>
+<p>Les recettes complètes sont dans <code>packaging/*.spec</code>. Les archives sources
+créées par <code>python -m build</code> emploient des underscores dans leurs noms de
+sdist ; les recettes utilisent ce nom. Elles requièrent les macros Python RPM
+et les dépendances empaquetées, notamment <code>python3dist(kuksa-client)</code> et
+<code>python3dist(sameloop-plant)</code> pour AGL. Les scripts ne lancent pas pip sur Internet
+pendant le build RPM. <strong>Recettes fournies mais non construites en mock/OBS.</strong></p>
+<p>Construire d'abord sameloop-plant, puis disposer d'un paquet kuksa-client 0.6.0
+et de ses dépendances dans les dépôts du builder. Cette disponibilité n'est pas
+supposée dans Fedora/redpesk. Ne pas confondre wheel construite et RPM validé.</p>
+<h2 id="yocto-agl">Yocto / AGL</h2>
+<p>Aucune recette prétendument prête n'est fournie sans image AGL de référence.
+La future couche devra fixer : version AGL/Yocto, version du broker, Python,
+recettes gRPC/Protobuf, métadonnées VSS, unités systemd et règles de sécurité.
+Les services doivent être lancés dans l'ordre broker → provider → controller ;
+la reprise après panne du broker doit redémarrer les deux services en OFF.</p>
+<p>Le suivi du dossier sameloop-dev-project précédent n'est pas modifié par ces
+archives : importer ce rapport comme nouvelle preuve avant d'y mettre à jour
+les composants. Ne pas faire passer l'image AGL, les UI connectées ou le matériel
+à l'état validé sur la base de cette seule intégration Linux.</p>
+</article></main><footer>SameLoop Lab · 25 October 2026 · Offline documentation</footer></body></html>

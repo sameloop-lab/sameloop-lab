@@ -1,0 +1,14 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Shared plant model · SameLoop</title><link rel="stylesheet" href="../../assets/style.css"></head><body><header><img class="brand" src="../../branding/profile-picture.png" alt="SameLoop emblem"><div class="badge">Bind & Seek · SameLoop Lab · 0.2.0</div><h1>Shared plant model</h1><nav><a href="../../index.html">Overview</a><a href="../../site/README.html">Read the guide</a><a href="../../index.html#diagrams">Diagrams</a><a href="../../index.html#documents">Documentation</a></nav></header><main><article><h1 id="shared-plant-model">Shared plant model</h1>
+<p><code>sameloop-plant</code> 0.1.0 provides a deterministic Python model and a JSON-lines CLI.
+It has no runtime dependency, network transport, controller or wall clock.
+Temperature starts at 32.4 °C, ambient is 20 °C, normal heat input is 0.18 °C/s.</p>
+<pre><code class="language-text">dT/dt   = H - (0.015 + 0.12 × applied / 100) × (T - 20)
+dApplied/dt = (demand - applied) / 0.6
+dRPM/dt = (40 × applied - RPM) / 0.8
+</code></pre>
+<p>The coupled model uses RK4 with internal steps no larger than 10 ms.
+<a href="../results/imported/plant/VALIDATION.html">Six unit tests</a> include analytic thermal
+and fan responses. This is a proposed reference, already used by the KUKSA
+provider. AFB and the standalone UIs still use their older simulators.
+No cross-stack numerical equivalence or real-equipment calibration is claimed.</p>
+</article></main><footer>SameLoop Lab · 25 October 2026 · Offline documentation</footer></body></html>

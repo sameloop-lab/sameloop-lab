@@ -1,0 +1,13 @@
+const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'..');
+const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
+const elements={};for(const id of ['search','status','count','projects-list'])elements[id]={value:'',innerHTML:'',textContent:'',addEventListener(){}};
+const context={document:{getElementById:id=>elements[id]}};vm.createContext(context);
+vm.runInContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],context);
+const count=()=> (elements['projects-list'].innerHTML.match(/<article /g)||[]).length;
+const projects=JSON.parse(fs.readFileSync(path.join(root,'data/projects.json'),'utf8'));
+assert.equal(count(),projects.length);
+for(const m of elements['projects-list'].innerHTML.matchAll(/href="([^"]+)"/g))assert.ok(fs.existsSync(path.join(root,m[1])),m[1]);
+elements.status.value='planned';vm.runInContext('render()',context);assert.equal(count(),projects.filter(p=>p.status==='planned').length);
+elements.search.value='no-matching-project';vm.runInContext('render()',context);assert.equal(count(),0);
+console.log('PASS: dashboard initial state, generated links, status filter and search. Logic test, not a graphical browser test.');
